@@ -90,7 +90,8 @@ module OpenID
         [@yadis_url, ["one", "two", "three"]]
       }
 
-      disco = @session[@key]
+      session_proxy = SessionProxy.new(@session, Consumer::DiscoveredServices)
+      disco = session_proxy[@key]
       assert_equal(disco.current, "one")
       assert_equal(next_service, "one")
       assert(disco.for_url?(@url))
@@ -100,7 +101,7 @@ module OpenID
       # services in @disco.
       assert_equal(@manager.get_next_service, "two")
       assert_equal(@manager.get_next_service, "three")
-      assert_equal(@session[@key], disco)
+      assert_equal(session_proxy[@key], disco)
 
       # The manager is exhausted and should be deleted and a new one
       # should be created.

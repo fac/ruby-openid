@@ -80,7 +80,7 @@ module OpenID
         assoc = Association.from_expires_in(3600, "handle", 'very_secret',
                                             assoc_type)
         sig = assoc.sign(pairs)
-        assert_equal(sig, expected)
+        assert_equal(sig.force_encoding("UTF-8"), expected.force_encoding("UTF-8"))
 
         m = Message.new(OPENID2_NS)
         pairs.each { |k, v|

@@ -31,7 +31,7 @@ module OpenID
       when Array
         obj.collect { |ele| encode(ele) }
       when Hash
-        Hash[ config.collect { |k,v| [k, encode(v)] } ]
+        Hash[ obj.collect { |k,v| [k, encode(v)] } ]
       else
         obj.respond_to?(:session_encode) ? obj.session_encode : obj
       end

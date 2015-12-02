@@ -50,6 +50,10 @@ module OpenID
 
         services
       end
+
+      def ==(other)
+        session_encode == other.session_encode
+      end
     end
 
     # Manages calling discovery and tracking which endpoints have

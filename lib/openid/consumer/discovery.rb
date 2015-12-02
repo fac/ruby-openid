@@ -78,6 +78,10 @@ module OpenID
       endpoint
     end
 
+    def ==(other)
+      session_encode == other.session_encode
+    end
+
     def display_identifier
       return @display_identifier if @display_identifier
 
